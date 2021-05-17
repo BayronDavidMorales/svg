@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/icon.svg" type="image/svg+xml">
+    <!--Custom css  -->
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/liveSample.css">
+    <!-- Fonts google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <!-- Codemirror -->
+    <script src="libs\codemirror-5.61.0\lib\codemirror.js"></script>
+    <!-- Mode -->
+    <script src="libs\codemirror-5.61.0\mode\htmlmixed\htmlmixed.js"></script>
+    <script src="libs\codemirror-5.61.0\mode\xml\xml.js"></script>
+    <script src="libs\codemirror-5.61.0\mode\javascript\javascript.js"></script>
+    <script src="libs\codemirror-5.61.0\mode\css\css.js"></script>
+    <!-- Scroolbar -->
+    <script src="libs\codemirror-5.61.0\addon\scroll\simplescrollbars.js"></script>
+    <!-- Styles Codemirror -->
+    <link rel="stylesheet" href="libs\codemirror-5.61.0\lib\codemirror.css">
+    <link rel="stylesheet" href="libs\codemirror-5.61.0\addon\scroll\simplescrollbars.css">
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>SVG</title>
+</head>
+
+<body>
+    <!-- TITLE -->
+    <div class="card">
+        <i class="fas fa-signature"></i>
+        <h2>
+            <b>SVG</b> Notes
+        </h2>
+    </div>
+    <!-- VIEW BOX -->
+    <div class="card">
+        <h3> View Box</h3>
+        <p>Visible area of SVG</p>
+        <hr>
+        <p><b>Without View Box </b>
+            <br>
+            Viewport= 100*100
+        </p>
+
+        <div class="svgConteiner">
+            <svg width="100" height="100">
+                <text x="0" y="15">1</text>
+                <circle cx="50" cy="50" r="50" />
+            </svg>
+            <svg width="100" height="100">
+                <text x="0" y="15">2</text>
+                <circle cx="100" cy="50" r="50" />
+            </svg>
+            <svg width="100" height="100">
+                <text x="0" y="15">3</text>
+                <circle cx="0" cy="50" r="50" />
+            </svg>
+            <svg width="100" height="100">
+                <text x="0" y="15">4</text>
+                <circle cx="100" cy="100" r="50" />
+            </svg>
+            <svg width="100" height="100">
+                <text x="0" y="15">5</text>
+                <circle cx="0" cy="100" r="50" />
+            </svg>
+        </div>
+        <br>
+        <p><b>With Viwe Box</b>
+            <br>
+            Viewport: 100*100
+            <br>
+            Viwe Box: *Variable*
+        </p>
+        <br>
+        <div class="svgConteiner">
+            <svg width="100" height="100" viewbox="0 0 100 100">
+                <text x="0" y="15">1</text>
+                <circle cx="50" cy="50" r="50" />
+            </svg>
+            <svg width="100" height="100" viewbox="50 0 100 100">
+                <text x="50" y="15">2</text>
+                <circle cx="100" cy="50" r="50" />
+            </svg>
+            <svg width="100" height="100" viewbox="-25 0 50 100">
+                <text x="-50" y="15">3</text>
+                <circle cx="0" cy="50" r="50" />
+            </svg>
+            <svg width="100" height="100" viewbox="50 50 100 100">
+                <text x="50" y="65">4</text>
+                <circle cx="100" cy="100" r="50" />
+            </svg>
+            <svg width="100" height="100" viewbox="-50 50 100 100">
+                <text x="-50" y="65">5</text>
+                <circle cx="0" cy="100" r="50" />
+            </svg>
+        </div>
+    </div>
+    <!-- TEXT -->
+    <div class="card">
+        <h3> Text</h3>
+        <p><br></p>
+        <hr>
+        <p>To write text</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="150">
+                <text x="0" y="50" font-family="Architects Daughter" font-size="50">
+                    Hello world
+                    <tspan font-family="system-ui" dx="30%" dy="50%" font-size="30" fill="#FF7E00">
+                        Hello world
+                    </tspan>
+                </text>
+            </svg>
+        </div>
+        <p>To center the text horizontally</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="150">
+                <text x="50%" y="50%" text-anchor="middle" font-family="Architects Daughter" font-size="50">
+                    Hello world
+                </text>
+            </svg>
+        </div>
+        <div class="svgConteiner">
+            <p>To center the text vertycally with <br> <b>dominant-baseline="middle"</b> or <b>dy= "0.3em</b></p>
+            <svg width="49%" height="150">
+                <text x="50%" y="50%" dominant-baseline="middle" font-family="Architects Daughter" font-size="30">
+                    Hello world
+                </text>
+            </svg>
+            <svg width="49%" height="150">
+                <text x="50%" y="50%" dy="0.3em" font-family="Architects Daughter" font-size="30">
+                    Hello world
+                </text>
+            </svg>
+        </div>
+        <p>To center the text vertycally and horizontally</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="150">
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Architects Daughter"
+                    font-size="50">
+                    Hello world
+                </text>
+            </svg>
+        </div>
+    </div>
+    <!-- RENDER TEXT ALONG A STOKE -->
+    <div class="card">
+        <h3>Render text along a stroke</h3>
+        <hr>
+        <p>Stroke</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100">
+                <path d="M100, 80 Q250,0.1 400, 80" />
+            </svg>
+        </div>
+
+        <p>Text</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100">
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Architects Daughter"
+                    font-size="50">
+                    How are you?
+                </text>
+            </svg>
+        </div>
+
+        <p>Text along stroke</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100">
+                <defs>
+                    <path id="exapmle" d="M100, 80 Q250,0.1 400, 80" />
+                </defs>
+                <text font-family="Architects Daughter" font-size="50">
+                    <textPath xlink:href="#exapmle">
+                        How are you?
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+    </div>
+    <!-- SVG ORGANIZATION -->
+    <div class="card">
+        <h3>Svg organization</h3>
+        <hr>
+        <p>Example</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewbox="0 0 576 512">
+                <path
+                    d="M298.06,224,448,277.55V496a16,16,0,0,1-16,16H368a16,16,0,0,1-16-16V384H192V496a16,16,0,0,1-16,16H112a16,16,0,0,1-16-16V282.09C58.84,268.84,32,233.66,32,192a32,32,0,0,1,64,0,32.06,32.06,0,0,0,32,32ZM544,112v32a64,64,0,0,1-64,64H448v35.58L320,197.87V48c0-14.25,17.22-21.39,27.31-11.31L374.59,64h53.63c10.91,0,23.75,7.92,28.62,17.69L464,96h64A16,16,0,0,1,544,112Zm-112,0a16,16,0,1,0-16,16A16,16,0,0,0,432,112Z">
+                </path>
+            </svg>
+        </div>
+
+        <p><b>Using &lt;use xlink:href="#id"/&gt; </b></p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewbox="0 0 576 512">
+                <path id="dog"
+                    d="M298.06,224,448,277.55V496a16,16,0,0,1-16,16H368a16,16,0,0,1-16-16V384H192V496a16,16,0,0,1-16,16H112a16,16,0,0,1-16-16V282.09C58.84,268.84,32,233.66,32,192a32,32,0,0,1,64,0,32.06,32.06,0,0,0,32,32ZM544,112v32a64,64,0,0,1-64,64H448v35.58L320,197.87V48c0-14.25,17.22-21.39,27.31-11.31L374.59,64h53.63c10.91,0,23.75,7.92,28.62,17.69L464,96h64A16,16,0,0,1,544,112Zm-112,0a16,16,0,1,0-16,16A16,16,0,0,0,432,112Z">
+                </path>
+                <use xlink:href="#dog" transform="translate(-400) scale(0.5)" />
+                <use xlink:href="#dog" transform="translate(550, 250) scale(0.3)" />
+            </svg>
+        </div>
+
+        <p><b>With symbol</b>, <br> This element has the viewbox property </p>
+        <div class="svgConteiner">
+            <svg width="99%" height="100" viewbox="0 0 576 512">
+                <symbol id="dogSymbol" viewbox="0 0 576 600">
+                    <path
+                        d="M298.06,224,448,277.55V496a16,16,0,0,1-16,16H368a16,16,0,0,1-16-16V384H192V496a16,16,0,0,1-16,16H112a16,16,0,0,1-16-16V282.09C58.84,268.84,32,233.66,32,192a32,32,0,0,1,64,0,32.06,32.06,0,0,0,32,32ZM544,112v32a64,64,0,0,1-64,64H448v35.58L320,197.87V48c0-14.25,17.22-21.39,27.31-11.31L374.59,64h53.63c10.91,0,23.75,7.92,28.62,17.69L464,96h64A16,16,0,0,1,544,112Zm-112,0a16,16,0,1,0-16,16A16,16,0,0,0,432,112Z">
+                    </path>
+                </symbol>
+                <use xlink:href="#dogSymbol" />
+            </svg>
+            <svg width="49%">
+                <use xlink:href="#dogSymbol" fill="orange" />
+            </svg>
+            <svg width="49%">
+                <use xlink:href="#dogSymbol" fill="gray" />
+            </svg>
+        </div>
+
+    </div>
+    <!-- TRANSFORM -->
+    <div class="card">
+        <h3>Transform</h3>
+        <hr>
+        <p><b>Example</b></p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewbox="-50 -50 600 600"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <symbol id="cube">
+                    <path
+                        d="M239.1 6.3l-208 78c-18.7 7-31.1 25-31.1 45v225.1c0 18.2 10.3 34.8 26.5 42.9l208 104c13.5 6.8 29.4 6.8 42.9 0l208-104c16.3-8.1 26.5-24.8 26.5-42.9V129.3c0-20-12.4-37.9-31.1-44.9l-208-78C262 2.2 250 2.2 239.1 6.3zM256 68.4l192 72v1.1l-192 78-192-78v-1.1l192-72zm32 356V275.5l160-65v133.9l-160 80z">
+                    </path>
+                </symbol>
+                <use xlink:href="#cube" />
+            </svg>
+        </div>
+        <p><b>Translate</b> <br>&lt... transform="translate(x, y)"/&gt;</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewbox="-50 -50 600 600"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use xlink:href="#cube" transform="translate(-1000)" />
+                <use xlink:href="#cube" transform="translate(0)" />
+                <use xlink:href="#cube" transform="translate(1000)" />
+            </svg>
+        </div>
+        <p><b>Scale</b> <br>&lt... transform="scale(n)"/&gt;</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewbox="-50 -50 600 600"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use xlink:href="#cube" transform="translate(-1000)" />
+                <use xlink:href="#cube" transform="translate(0) scale(0.75) " />
+                <use xlink:href="#cube" transform="translate(1000) scale(0.5) " />
+            </svg>
+        </div>
+        <p><b>Rotate</b> <br>&lt... transform="rotate(degrees)"/&gt;
+        </p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewbox="-50 -50 600 600"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use xlink:href="#cube" transform="translate(-1000)" />
+                <use id="cubeRotate" xlink:href="#cube" transform="translate(0) scale(0.75) rotate(90)" fill="orange" />
+                <use xlink:href="#cube" transform="translate(1000) scale(0.5) rotate(90)" />
+
+                <!-- ROTATE FROM THE CENTER OF MASS -->
+                <style>
+                    #cubeRotate {
+                        transform-origin: 50% 50%;
+                        transform-box: fill-box;
+                    }
+                </style>
+            </svg>
+        </div>
+        <p><b>Skew</b> <br>&lt... transform="skewX(n) skewY(n)"/&gt;</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewbox="-50 -50 600 600"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use xlink:href="#cube" transform="translate(-1000) skewX(-20)" />
+                <use xlink:href="#cube" transform="translate(0) scale(0.75) rotate(25) skewY(20)" />
+                <use xlink:href="#cube" transform="translate(1000) scale(0.5) rotate(50) skewY(-55)" />
+            </svg>
+        </div>
+    </div>
+    <!-- GRADIENTS -->
+    <div class="card">
+        <h3>Gradients</h3>
+        <p><br></p>
+        <hr>
+        <p>Example</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <symbol id="flag" viewbox="0 0 512 512">
+                    <path
+                        d="M349.565 98.783C295.978 98.783 251.721 64 184.348 64c-24.955 0-47.309 4.384-68.045 12.013a55.947 55.947 0 0 0 3.586-23.562C118.117 24.015 94.806 1.206 66.338.048 34.345-1.254 8 24.296 8 56c0 19.026 9.497 35.825 24 45.945V488c0 13.255 10.745 24 24 24h16c13.255 0 24-10.745 24-24v-94.4c28.311-12.064 63.582-22.122 114.435-22.122 53.588 0 97.844 34.783 165.217 34.783 48.169 0 86.667-16.294 122.505-40.858C506.84 359.452 512 349.571 512 339.045v-243.1c0-23.393-24.269-38.87-45.485-29.016-34.338 15.948-76.454 31.854-116.95 31.854z">
+                    </path>
+                </symbol>
+                <use xlink:href="#flag" />
+            </svg>
+        </div>
+
+        <div class="svgConteiner">
+            <svg width="100%" height="100"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <lineargradient id="gradientOne">
+                        <stop offset="5%" stop-color="#333333" />
+                        <stop offset="20%" stop-color="#696969" />
+                        <stop offset="75%" stop-color="#FF8600" />
+                        <stop offset="100%" stop-color="#FFA500" />
+                    </lineargradient>
+                    <lineargradient id="gradientTwo" x1="0" y1="0" x2="100%" y2="100%">
+                        <stop offset="5%" stop-color="#333333" />
+                        <stop offset="20%" stop-color="#696969" />
+                        <stop offset="75%" stop-color="#FF8600" />
+                        <stop offset="100%" stop-color="#FFA500" />
+                    </lineargradient>
+                    <lineargradient id="gradientThre" x1="50%" y1="0" x2="50%" y2="100%">
+                        <stop offset="5%" stop-color="#333333" />
+                        <stop offset="20%" stop-color="#696969" />
+                        <stop offset="75%" stop-color="#FF8600" />
+                        <stop offset="100%" stop-color="#FFA500" />
+                    </lineargradient>
+                </defs>
+                <use xlink:href="#flag" fill="url(#gradientOne)" transform="translate(-200)" />
+                <use xlink:href="#flag" fill="url(#gradientTwo)" />
+                <use xlink:href="#flag" fill="url(#gradientThre)" transform="translate(200)" />
+            </svg>
+        </div>
+
+        <p>Text</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="150"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <lineargradient id="gradientText">
+                        <stop offset="20%" stop-color="#70088C" />
+                        <stop offset="40%" stop-color="#0554F2" />
+                        <stop offset="60%" stop-color="#038C25" />
+                        <stop offset="80%" stop-color="#F2D005" />
+                        <stop offset="100%" stop-color="#D90707" />
+                    </lineargradient>
+                </defs>
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Architects Daughter"
+                    font-size="50" fill="url(#gradientText)">
+                    How are you?
+                </text>
+            </svg>
+        </div>
+    </div>
+    <!-- PATTERN -->
+    <div class="card">
+        <h3>Pattern</h3>
+        <p><br></p>
+        <hr>
+        <p>Example</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <symbol id="shirt" viewbox="0 0 512 512">
+                    <path
+                        d="M631.2 96.5L436.5 0C416.4 27.8 371.9 47.2 320 47.2S223.6 27.8 203.5 0L8.8 96.5c-7.9 4-11.1 13.6-7.2 21.5l57.2 114.5c4 7.9 13.6 11.1 21.5 7.2l56.6-27.7c10.6-5.2 23 2.5 23 14.4V480c0 17.7 14.3 32 32 32h256c17.7 0 32-14.3 32-32V226.3c0-11.8 12.4-19.6 23-14.4l56.6 27.7c7.9 4 17.5.8 21.5-7.2L638.3 118c4-7.9.8-17.6-7.1-21.5z">
+                    </path>
+                </symbol>
+                <use xlink:href="#shirt" />
+            </svg>
+        </div>
+        <p>With pattern</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <symbol id="frostSymbol" width="50" height="50" viewbox="0 0 512 512">
+                        <path fill="white"
+                            d="M471.99 334.43L336.06 256l135.93-78.43c7.66-4.42 10.28-14.2 5.86-21.86l-32.02-55.43c-4.42-7.65-14.21-10.28-21.87-5.86l-135.93 78.43V16c0-8.84-7.17-16-16.01-16h-64.04c-8.84 0-16.01 7.16-16.01 16v156.86L56.04 94.43c-7.66-4.42-17.45-1.79-21.87 5.86L2.15 155.71c-4.42 7.65-1.8 17.44 5.86 21.86L143.94 256 8.01 334.43c-7.66 4.42-10.28 14.21-5.86 21.86l32.02 55.43c4.42 7.65 14.21 10.27 21.87 5.86l135.93-78.43V496c0 8.84 7.17 16 16.01 16h64.04c8.84 0 16.01-7.16 16.01-16V339.14l135.93 78.43c7.66 4.42 17.45 1.8 21.87-5.86l32.02-55.43c4.42-7.65 1.8-17.43-5.86-21.85z">
+                        </path>
+                    </symbol>
+                    <symbol id="lightBulbSymbol" width="50" height="50" viewbox="0 0 512 512">
+                        <path fill="green"
+                            d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z">
+                        </path>
+                    </symbol>
+                    <pattern id="patternPoints" x0="0" y0="0" width="50" height="50" patternunits="userSpaceOnUse">
+                        <rect width="50" height="50" fill="orange" />
+                        <circle cx="25" cy="25" r="10" fill="gray" />
+                    </pattern>
+                    <pattern id="patternFrost" x0="0" y0="0" width="100" height="100" patternunits="userSpaceOnUse">
+                        <rect width="100" height="100" fill="orange" />
+                        <use xlink:href="#frostSymbol" />
+                    </pattern>
+                    <pattern id="patternLightBulb" x0="0" y0="0" width="100" height="100" patternunits="userSpaceOnUse">
+                        <rect width="100" height="100" fill="white" />
+                        <use xlink:href="#lightBulbSymbol" />
+                    </pattern>
+                </defs>
+                <use xlink:href="#shirt" fill="url(#patternPoints)" transform="translate(-200)" />
+                <use xlink:href="#shirt" fill="url(#patternFrost)" />
+                <use xlink:href="#shirt" fill="url(#patternLightBulb)" transform="translate(200)" />
+            </svg>
+        </div>
+    </div>
+    <!-- CLIP MASK AND CLIPPING PATHS -->
+    <div class="card">
+        <h3>Clip mask and clippiin paths</h3>
+        <hr>
+        <p>Example</p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path transform="translate(-1000)"
+                    d="M149.333 56v80c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V56c0-13.255 10.745-24 24-24h101.333c13.255 0 24 10.745 24 24zm181.334 240v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm32-240v80c0 13.255 10.745 24 24 24H488c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24zm-32 80V56c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm-205.334 56H24c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zm386.667-56H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm0 160H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zM181.333 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24z">
+                </path>
+                <image transform="translate(0, 10)"
+                    xlink:href="https://i.pinimg.com/originals/0a/1f/8c/0a1f8c38e1ef7440c84bbfe566bb775d.jpg" />
+                <text dy="2em" dx="950" font-family="Anton" font-size="100">
+                    <tspan>Welcome to</tspan>
+                    <tspan dy="200" dx="-500" font-size="200">Colombia</tspan>
+                </text>
+            </svg>
+        </div>
+        <p><b>Clip path</b></p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <clippath id="cloud">
+                        <path
+                            d="M149.333 56v80c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V56c0-13.255 10.745-24 24-24h101.333c13.255 0 24 10.745 24 24zm181.334 240v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm32-240v80c0 13.255 10.745 24 24 24H488c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24zm-32 80V56c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm-205.334 56H24c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zm386.667-56H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm0 160H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zM181.333 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24z">
+                        </path>
+                    </clippath>
+                    <clipPath id="textPath">
+                        <text dy="2em" dx="0" font-family="Anton" font-size="100">
+                            <tspan>Welcome to</tspan>
+                            <tspan dy="200" dx="-500" font-size="200">Colombia</tspan>
+                        </text>
+                    </clipPath>
+                </defs>
+                <image clip-path="url(#cloud)" transform="translate(-500)"
+                    xlink:href="https://i.pinimg.com/originals/0a/1f/8c/0a1f8c38e1ef7440c84bbfe566bb775d.jpg" />
+
+                <image clip-path="url(#textPath" ); transform="translate(500)"
+                    xlink:href="https://i.pinimg.com/originals/0a/1f/8c/0a1f8c38e1ef7440c84bbfe566bb775d.jpg" />
+            </svg>
+        </div>
+        <p><b>Mask</b></p>
+        <div class="svgConteiner">
+            <svg width="100%" height="100" viewBox="0 0 512 512" 
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g transform="translate(-1000)">
+                    <path fill="black"
+                        d="M149.3,56v80c0,13.3-10.7,24-24,24H24c-13.3,0-24-10.7-24-24V56c0-13.3,10.7-24,24-24h101.3C138.6,32,149.3,42.7,149.3,56 L149.3,56z" />
+                    <path fill="white"
+                        d="M362.7,56v80c0,13.3,10.7,24,24,24H488c13.3,0,24-10.7,24-24V56c0-13.3-10.7-24-24-24H386.7C373.4,32,362.7,42.7,362.7,56z" />
+                    <path fill="black"
+                        d="M386.7,320H488c13.3,0,24-10.7,24-24v-80c0-13.3-10.7-24-24-24H386.7c-13.3,0-24,10.7-24,24v80 C362.7,309.3,373.4,320,386.7,320z" />
+                    <path fill="white"
+                        d="M181.3,376v80c0,13.3,10.7,24,24,24h101.3c13.3,0,24-10.7,24-24v-80c0-13.3-10.7-24-24-24H205.3 C192.1,352,181.3,362.7,181.3,376z" />
+                    <path fill="white"
+                        d="M200,160h101.3c13.3,0,24-10.7,24-24V56c0-13.3-10.7-24-24-24H200c-13.3,0-24,10.7-24,24v80C176,149.3,186.7,160,200,160" />
+                    <path fill="black"
+                        d="M386.7,480H488c13.3,0,24-10.7,24-24v-80c0-13.3-10.7-24-24-24H386.7c-13.3,0-24,10.7-24,24v80 C362.7,469.3,373.4,480,386.7,480z" />
+                    <path fill="black" fill="black"
+                        d="M325.3,296v-80c0-13.3-10.7-24-24-24H200c-13.3,0-24,10.7-24,24v80c0,13.3,10.7,24,24,24h101.3 C314.6,320,325.3,309.3,325.3,296z" />
+                    <path fill="white"
+                        d="M125.3,192H24c-13.3,0-24,10.7-24,24v80c0,13.3,10.7,24,24,24h101.3c13.3,0,24-10.7,24-24v-80 C149.3,202.7,138.6,192,125.3,192L125.3,192z" />
+                    <path fill="black"
+                        d="M0,376v80c0,13.3,10.7,24,24,24h101.3c13.3,0,24-10.7,24-24v-80c0-13.3-10.7-24-24-24H24C10.7,352,0,362.7,0,376z" />
+                </g>
+                <image transform="translate(0, 10)"
+                    xlink:href="https://i.pinimg.com/originals/0a/1f/8c/0a1f8c38e1ef7440c84bbfe566bb775d.jpg" />
+                <defs>
+                    <mask id="mask">
+                        <g>
+                            <path fill="black"
+                                d="M149.3,56v80c0,13.3-10.7,24-24,24H24c-13.3,0-24-10.7-24-24V56c0-13.3,10.7-24,24-24h101.3C138.6,32,149.3,42.7,149.3,56 L149.3,56z" />
+                            <path fill="white"
+                                d="M362.7,56v80c0,13.3,10.7,24,24,24H488c13.3,0,24-10.7,24-24V56c0-13.3-10.7-24-24-24H386.7C373.4,32,362.7,42.7,362.7,56z" />
+                            <path fill="black"
+                                d="M386.7,320H488c13.3,0,24-10.7,24-24v-80c0-13.3-10.7-24-24-24H386.7c-13.3,0-24,10.7-24,24v80 C362.7,309.3,373.4,320,386.7,320z" />
+                            <path fill="white"
+                                d="M181.3,376v80c0,13.3,10.7,24,24,24h101.3c13.3,0,24-10.7,24-24v-80c0-13.3-10.7-24-24-24H205.3 C192.1,352,181.3,362.7,181.3,376z" />
+                            <path fill="white"
+                                d="M200,160h101.3c13.3,0,24-10.7,24-24V56c0-13.3-10.7-24-24-24H200c-13.3,0-24,10.7-24,24v80C176,149.3,186.7,160,200,160" />
+                            <path fill="black"
+                                d="M386.7,480H488c13.3,0,24-10.7,24-24v-80c0-13.3-10.7-24-24-24H386.7c-13.3,0-24,10.7-24,24v80 C362.7,469.3,373.4,480,386.7,480z" />
+                            <path fill="black" fill="black"
+                                d="M325.3,296v-80c0-13.3-10.7-24-24-24H200c-13.3,0-24,10.7-24,24v80c0,13.3,10.7,24,24,24h101.3 C314.6,320,325.3,309.3,325.3,296z" />
+                            <path fill="white"
+                                d="M125.3,192H24c-13.3,0-24,10.7-24,24v80c0,13.3,10.7,24,24,24h101.3c13.3,0,24-10.7,24-24v-80 C149.3,202.7,138.6,192,125.3,192L125.3,192z" />
+                            <path fill="black"
+                                d="M0,376v80c0,13.3,10.7,24,24,24h101.3c13.3,0,24-10.7,24-24v-80c0-13.3-10.7-24-24-24H24C10.7,352,0,362.7,0,376z" />
+                        </g>
+                    </mask>
+                </defs>
+                <image mask="url(#mask)" transform="translate(1000, 10)"
+                    xlink:href="https://i.pinimg.com/originals/0a/1f/8c/0a1f8c38e1ef7440c84bbfe566bb775d.jpg" />
+                <use xlink:href="#mask" />
+            </svg>
+        </div>
+    </div>
+    <!-- FILTERS -->
+    <div class="card">
+        <h3>Filters</h3>
+        <hr>
+        <div class="liveSample">
+            <div class="menuSample">
+                <p data-target="#image" class="activeTarget btn"><b>Image</b></p>
+                <p data-target="#text" class="btn"><b>Text</b></p>
+            </div>
+            <div class="Url-txt-Content">
+                <label for="url_txt_content">URL image</label>
+                <input type="url" id="url_txt_content" value="./img/cuy.png" onclick="this.select()">
+            </div>
+            <div data-content id="image" class="active">
+                <div class="svgConteiner">
+                    <div class="OptionsSample">
+                        <label for="ImageFilter"><b>Select a filter:</b></label>
+                        <select name="ImageFilter" id="FilterSelect">
+                        </select>
+                        
+                        <form class="hidden" id="parametersConteiner">
+                            <!-- PAMETERS -->
+                        </form>
+                    </div>
+
+                <svg width="100%" height="300" viewBox="0 0 512 512" >
+                    <defs>
+                        <filter id="feColorMatrix">
+                            <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" ></feColorMatrix>
+                        </filter>
+                    </defs>
+                    <image filter="url(#feColorMatrix)" xlink:href="./img/cuy.png"></image>
+                </svg>
+                </div>
+            </div>
+            <div data-content id="text " class="contentSample">
+                <div class="svgConteiner">
+                    <div class="selectOptions">
+                        <label for="textFilter"><b>Select a filter:</b></label>
+                        <select name="textFilter" id="textFilter">
+                            <option value="none">None</option>
+                            <option value="feGaussianBlur">Gaussian Blur</option>
+                            <option value="feMorphology-erode">Morphology-erode</option>
+                            <option value="feMorphology-dilate">Morphology-dilate</option>
+                            <option value="feColorMatrix-saturate">ColorMatrix-saturate</option>
+                            <option value="feColorMatrix-huerotate">ColorMatrix-huerotate</option>
+                            <option value="Height Map + Diffuse Light">Height Map + Diffuse Light</option>
+                            <option value="feColorMatrix-sepiatone">feColorMatrix-sepiatone</option>
+                            <option value="Sobel Edge Detection">Sobel Edge Detection</option>
+                            <option value="Turbulence + Displacement Map">Turbulence + Displacement Map</option>
+                        </select>
+                    </div>
+                    <form class="rangeInput">
+                        <input type="range" min="0" max="100" step="1" id="sendRangeText"
+                            oninput="resultRangeText.value=sendRangeText.value">
+                        <input type="text" id="resultRangeText" style="width: 20px; text-align: center;" value="50">
+                    </form>
+                    <svg width="100%" height="200">
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Anton"
+                            font-size="50">
+                            How are you?
+                        </text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- feColorMatrix -->
+    <div class="card">
+        <svg width="100%" height="1000" viewBox="0 0 150 500" preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        
+            <!-- ref -->
+            <defs>
+                <g id="circles">
+                    <circle cx="30" cy="30" r="20" fill="blue" fill-opacity="0.5" />
+                    <circle cx="20" cy="50" r="20" fill="green" fill-opacity="0.5" />
+                    <circle cx="40" cy="50" r="20" fill="red" fill-opacity="0.5" />
+                </g>
+            </defs>
+            <use href="#circles" />
+            <text x="70" y="50">Reference</text>
+        
+            <!-- identity matrix -->
+            <filter id="colorMeTheSame">
+                <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 1 0" />
+            </filter>
+            <use href="#circles" transform="translate(0 70)" filter="url(#colorMeTheSame)" />
+            <text x="70" y="120">Identity matrix</text>
+        
+            <!-- Combine RGB into green matrix -->
+            <filter id="colorMeGreen">
+                <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0
+                        1 1 1 1 0
+                        0 0 0 0 0
+                        0 0 0 1 0" />
+            </filter>
+            <use href="#circles" transform="translate(0 140)" filter="url(#colorMeGreen)" />
+            <text x="70" y="190">rgbToGreen</text>
+        
+            <!-- saturate -->
+            <filter id="colorMeSaturate">
+                <feColorMatrix in="SourceGraphic" type="saturate" values="0.2" />
+            </filter>
+            <use href="#circles" transform="translate(0 210)" filter="url(#colorMeSaturate)" />
+            <text x="70" y="260">saturate</text>
+        
+            <!-- hueRotate -->
+            <filter id="colorMeHueRotate">
+                <feColorMatrix in="SourceGraphic" type="hueRotate" values="180" />
+            </filter>
+            <use href="#circles" transform="translate(0 280)" filter="url(#colorMeHueRotate)" />
+            <text x="70" y="330">hueRotate</text>
+        
+            <!-- luminanceToAlpha -->
+            <filter id="colorMeLTA">
+                <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" />
+            </filter>
+            <use href="#circles" transform="translate(0 350)" filter="url(#colorMeLTA)" />
+            <text x="70" y="400">luminanceToAlpha</text>
+        </svg>
+    </div>
+</body>
+<script type="module" src="./scripts/main.js"></script>
+<script type="module" src="./scripts/liveSample.js"></script>
+</html
