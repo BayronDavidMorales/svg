@@ -19,13 +19,17 @@ document.querySelectorAll('[data-target]').forEach(item=>{
 })
 var selectFilter = document.getElementById('FilterSelect'); // select
 var parametersConteiner = document.getElementById('parametersConteiner') // form parameters
+let url_txt_content = document.getElementById('url_txt_content'); // image url or text
+const eventChangeManually = new Event("change");
+
 var filtersList = {};
+var img;
 
 // this function get parameters list
 var getParametersList = (parametersConteiner) => {
     filtersList = {};
     for (let i = 1; i < parametersConteiner.getElementsByTagName('input').length; i += 2) {
-        let property = parametersConteiner.getElementsByTagName('input')[i].id;
+        let property = parametersConteiner.getElementsByTagName('input')[i].name;
         let value = parametersConteiner.getElementsByTagName('input')[i].value;
         filtersList[property] = value;
 
@@ -36,6 +40,7 @@ var getParametersList = (parametersConteiner) => {
         filtersList[property] = value;
     }
     return filtersList;
+
 }
 //it generate an select tag with the filters list
 var generateOptionsFilters = (object) => {
@@ -54,6 +59,7 @@ generateOptionsFilters(filters);
 selectFilter.addEventListener('change',()=>
     {
     if (selectFilter.value == 'none') {
+        noneFiler(selectFilter);
         let visibleInputs = document.querySelectorAll('.visible');
         visibleInputs.forEach((input)=>{
             input.classList.remove('visible')
@@ -66,17 +72,24 @@ selectFilter.addEventListener('change',()=>
             input.classList.remove('hidden')
             input.classList.add('visible')
         })
-        aplyFilter(selectFilter.value, selectFilter.id, 10, filtersList);
+        aplyFilter(selectFilter.value, selectFilter.id,  filtersList);
     }
     })
 //it listen changes of parameters of filter
 parametersConteiner.addEventListener('change', (e) => {
     getParametersList(parametersConteiner);
-    aplyFilter(selectFilter.value, selectFilter.id, 10, filtersList);
+    aplyFilter(selectFilter.value, selectFilter.id,  filtersList);
+    })
+// it listen changes in url image or text / Use a promise for wait image size
+url_txt_content.addEventListener('change', () => {
+    getUrlorText(url_txt_content).then(imageSize => {
+        img= imageSize
+        selectFilter.dispatchEvent(eventChangeManually);
+        })
     })
 //it generate code with filter selected
-var aplyFilter = (filterName, selectFilterid, valueFilter, parametersList) => {
-
+var aplyFilter = (filterName, selectFilterid, parametersList) => {
+    
     // get selected     
     let svgConteiner = document.getElementById(selectFilterid).closest('.svgConteiner');
     //get previous items
@@ -90,7 +103,7 @@ var aplyFilter = (filterName, selectFilterid, valueFilter, parametersList) => {
     
     // crating a new svg
     let svg = document.createElementNS(w3_svg,'svg');
-        relocateAtrributesNS(oldSvg[0], svg, 'others') //set attributes from oldSvg to new svg
+    setAttributesNS(svg, { width:"100%", height:"300", viewBox:`0 0 ${img.width} ${img.height}`});
 
     let defsSvg= document.createElementNS(w3_svg ,'defs');
 
@@ -100,9 +113,8 @@ var aplyFilter = (filterName, selectFilterid, valueFilter, parametersList) => {
     let typeFilter = document.createElementNS(w3_svg ,`${filterName}`);
         setAttributesNS(typeFilter, parametersList );
         
-    let url_txt_content = document.getElementById('url_txt_content').value;
     let imageSvg = document.createElementNS(w3_svg ,'image');
-    imageSvg.setAttributeNS(w3_xlink, 'xlink:href', url_txt_content);
+    imageSvg.setAttributeNS(w3_xlink, 'xlink:href', url_txt_content.value);
         imageSvg.setAttributeNS(null,'filter', `url(#${filterName}Filter)`);
 
     filterDefs.appendChild(typeFilter);
@@ -122,6 +134,32 @@ var aplyFilter = (filterName, selectFilterid, valueFilter, parametersList) => {
     svgConteiner.replaceChild(svg, oldSvg[0]);
     generateCode(svgConteiner);
     }
+var noneFiler = (element)=>{
+    var svgConteiner = element.closest('.svgConteiner');
+    //get previous items
+    let codeMirrorContent = svgConteiner.getElementsByClassName('CodeMirror');
+    let btnAply = svgConteiner.getElementsByClassName('btn');
+    // remove previous items
+    svgConteiner.removeChild(codeMirrorContent[0]);
+    svgConteiner.removeChild(btnAply[0]);
+    //get svg in svgConteiner
+    let oldSvg = svgConteiner.getElementsByTagName('svg');
+
+    // crating a new svg
+    let svg = document.createElementNS(w3_svg, 'svg');
+    setAttributesNS(svg, { width: "100%", height: "300", viewBox: `0 0 ${img.width} ${img.height}` });
+
+    let imageSvg = document.createElementNS(w3_svg, 'image');
+    imageSvg.setAttributeNS(w3_xlink, 'xlink:href', url_txt_content.value);
+
+    svg.appendChild(imageSvg);
+    // <svg>
+    //     <image></image>
+    // </svg>
+
+    svgConteiner.replaceChild(svg, oldSvg[0]);
+    generateCode(svgConteiner);
+}
 //this function set attributes from oldElement to newElement
 var relocateAtrributesNS = (oldElement, newElement, type) => 
     {
@@ -182,24 +220,27 @@ var generateParameters=(nFilter, obj)=>{
                     'min': 0,
                     'max': values[i],
                     'value': values[i] / 2,
-                    'step': 0.1, 
-                    'id': `${keys[i]}`, 
+                    'step': 1, 
+                    'id': `R${keys[i]}`, 
+                    'name': keys[i],
                     'style': "width: 70%;",
-                    'oninput': `number${keys[i]}.value=${keys[i]}.value` });
+                    'oninput': `number${keys[i]}.value=R${keys[i]}.value` });
                 setAttributes(numberInput, {
                     'type': 'number', 
+                    'min': 0,
+                    'max': values[i],
+                    'step': 1,
                     'id':`number${keys[i]}`, 
                     'name':`number${keys[i]}`, 
                     'value': values[i]/2,  
                     'style':"width: 20%;",
-                    'oninput': `${keys[i]}.value=number${keys[i]}.value`})
+                    'oninput': `R${keys[i]}.value=number${keys[i]}.value`})
                 
                 column.appendChild(numberInput)
                 column.appendChild(rangeInput)
 
                 parametersConteiner.appendChild(label)
                 parametersConteiner.appendChild(column)
-
             }
         }
     getParametersList(parametersConteiner);
@@ -213,5 +254,16 @@ var findFilter= (filterName, obj) =>{
         }
     }
     }
-
+var getUrlorText = (url_txt_content)=>{
+    return new Promise((resolve, reject) => {
+        let img = new Image()
+        img.onload = () => resolve({width: img.width, height: img.height})
+        img.onerror = reject;
+        img.src = url_txt_content.value;
+    })
+}
+getUrlorText(url_txt_content).then(imageSize => {
+    img = imageSize
+    selectFilter.dispatchEvent(eventChangeManually);
+})
 

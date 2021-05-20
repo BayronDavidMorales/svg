@@ -16,9 +16,9 @@
     display: none;
 }
 .visible{
-    /* display: grid; */
-    /* grid-template-columns: 100px 100px; */
-    gap: 5px;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: 10px;
     margin-top: 10px;
     margin-left: 40%;
     padding: 10px;
@@ -32,7 +32,6 @@
 
 .active[data-content]{
     display: block;
-    /* border: 1px solid #FF7E00; */
     border-top: 1px solid #FF7E00;
     border-radius: 3px;
     padding: 10px;
@@ -42,11 +41,44 @@
     border-bottom: 3px solid #FF7E00;
     border-radius: 5px;
 }
+.btn:hover{
+    background-color: #FF7E00;
+    color: bisque;
+    transition: all 0.5s;
+    border: 1px solid #FF7E00;
+    border-bottom: 5px solid #FF7E00;
+
+}
+.Url-txt-Content{
+    display: grid;
+    grid-template-columns: 15% 1fr;
+    border: 1px solid rgba(0,0,0, 0.1);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+.Url-txt-Content input{
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    background-color: rgba(0, 4, 255, 0.1);
+}
+.Url-txt-Content input:focus{
+    outline: none;
+    box-shadow: 0 0 0 1pt rgba(0, 4, 255, 0.5);
+}
 
 @media (max-width: 768px){
     #paramsConteiner{
     width: 80%; 
     grid-template-columns: 40% 1fr;
     margin: 10%;
+    }
+    .visible{
+    margin-left: 10%;
+    width: 80%;
+    }
+    .Url-txt-Content{
+    grid-template-columns: 30% 1fr;
     }
 }

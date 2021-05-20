@@ -23,6 +23,13 @@ select{
     background-color: rgba(0, 4, 255, 0.1);
     color: #262626;
     font-size: 1em;
+    border-radius: 3px;
+}
+input{
+    background-color: rgba(0, 4, 255, 0.01);
+    border-radius: 3px;
+    font-size: 1em;
+
 }
 p{
     margin-left: 10px;
